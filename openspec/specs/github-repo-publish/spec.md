@@ -3,20 +3,20 @@
 ## Purpose
 将 ShareMonitor 项目以可复现、可审核的方式发布到 GitHub，并确保仓库不包含本地配置与构建产物。
 ## Requirements
-### Requirement: Repository MUST exclude local-only configuration and build artifacts
-The repository MUST avoid committing local-only configuration and generated build artifacts, including but not limited to `local.properties`, `**/build`, and packaged outputs (e.g. `*.apk`).
+### Requirement: 仓库必须（MUST）排除仅本地配置与构建产物
+仓库必须（MUST）避免提交仅本地使用的配置与生成的构建产物，包括但不限于 `local.properties`、`**/build` 以及打包产物（如 `*.apk`）。
 
-#### Scenario: Staging changes for first commit
-- **WHEN** the user stages files for the initial commit
-- **THEN** local-only configuration and build artifacts are not included in the staged set
+#### Scenario: 首次提交暂存不包含本地/构建产物
+- **WHEN** 用户为首次提交执行暂存（stage）操作
+- **THEN** 暂存区不包含仅本地配置与构建产物
 
-### Requirement: Repository SHALL provide a reproducible GitHub publish workflow
-The system SHALL define a reproducible workflow to publish the project to GitHub, including initializing git, creating an initial commit, configuring the default branch as `main`, and pushing to a remote `origin`.
+### Requirement: 仓库应当（SHALL）提供可复现的 GitHub 发布工作流
+系统应当（SHALL）定义一套可复现的工作流将项目发布到 GitHub，包括初始化 git、创建首次提交、将默认分支配置为 `main`，并推送到远程 `origin`。
 
-#### Scenario: Publishing to GitHub over HTTPS
-- **WHEN** the user creates a GitHub repository and sets `origin` using an HTTPS URL
-- **THEN** the user can push the `main` branch to GitHub successfully
+#### Scenario: 通过 HTTPS 发布到 GitHub
+- **WHEN** 用户创建 GitHub 仓库并使用 HTTPS URL 设置 `origin`
+- **THEN** 用户可以成功将 `main` 分支推送到 GitHub
 
-#### Scenario: Publishing to GitHub over SSH
-- **WHEN** the user creates a GitHub repository and sets `origin` using an SSH URL
-- **THEN** the user can push the `main` branch to GitHub successfully
+#### Scenario: 通过 SSH 发布到 GitHub
+- **WHEN** 用户创建 GitHub 仓库并使用 SSH URL 设置 `origin`
+- **THEN** 用户可以成功将 `main` 分支推送到 GitHub

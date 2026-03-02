@@ -3,23 +3,23 @@
 ## Purpose
 在个股详情页实时行情缺失或不完整时提供可用的回退展示（从分时数据推导关键字段），并向用户明确提示当前展示为回退行情。
 ## Requirements
-### Requirement: Detail view MUST not silently display blank quote fields
-The system MUST avoid a state where a quote object exists but core quote fields are blank, resulting in the detail view only showing placeholders without any error or fallback.
+### Requirement: 详情页不得（MUST NOT）静默展示空白行情字段
+系统必须（MUST）避免出现“已有行情对象但核心字段为空”的状态，以免详情页只显示占位符且没有任何错误提示或回退策略。
 
-#### Scenario: Quote object is incomplete
-- **WHEN** the quote provider returns a quote for the selected symbol but `lastPrice` is missing
-- **THEN** the system treats the quote as unavailable and does not use it as the primary display quote
+#### Scenario: 行情对象不完整
+- **WHEN** 行情提供方返回了所选标的的行情，但缺失 `lastPrice`
+- **THEN** 系统将该行情视为不可用，并且不将其作为详情页的主展示行情
 
-### Requirement: Detail view SHALL provide an intraday-derived fallback quote
-When a real-time quote is unavailable, the system SHALL derive a minimal fallback quote from intraday history points to keep the detail view informative.
+### Requirement: 实时行情不可用时详情页应当（SHALL）提供分时推导的回退行情
+当实时行情不可用时，系统应当（SHALL）从分时历史点中推导出最小可用的回退行情，以保证详情页仍有信息可展示。
 
-#### Scenario: Intraday history exists but quote is unavailable
-- **WHEN** the user opens the detail view and intraday history points are available but real-time quote is unavailable
-- **THEN** the system derives and displays `lastPrice`, `open`, `high`, and `low` from intraday points
+#### Scenario: 分时历史存在但实时行情不可用
+- **WHEN** 用户打开详情页，且分时历史点可用但实时行情不可用
+- **THEN** 系统从分时点推导并展示 `lastPrice`、`open`、`high`、`low`
 
-### Requirement: Detail view SHALL surface a user-visible status message when using fallback
-The system SHALL show a status message when the detail view is using a derived or fallback quote instead of a real-time provider quote.
+### Requirement: 使用回退行情时详情页应当（SHALL）提示用户当前状态
+当详情页使用推导/回退行情而非提供方实时行情时，系统应当（SHALL）展示状态提示信息。
 
-#### Scenario: Showing derived quote message
-- **WHEN** the detail view displays an intraday-derived quote
-- **THEN** the system shows a message indicating the quote is derived from intraday history
+#### Scenario: 展示分时推导提示
+- **WHEN** 详情页展示分时推导行情
+- **THEN** 系统展示提示，说明当前行情由分时历史推导而来

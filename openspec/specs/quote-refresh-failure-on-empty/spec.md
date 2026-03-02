@@ -3,16 +3,16 @@
 ## Purpose
 当行情刷新接口返回空结果时，将其视为刷新失败并提供可展示的友好错误信息，避免“请求成功但无数据”被误判为刷新成功。
 ## Requirements
-### Requirement: Quote refresh MUST fail on empty results
-The system MUST treat a successful network call that returns no quotes for requested symbols as a refresh failure, rather than a success.
+### Requirement: 行情刷新在空结果时必须（MUST）失败
+系统必须（MUST）将“网络调用成功但对请求的标的未返回任何行情”的情况视为刷新失败，而不是刷新成功。
 
-#### Scenario: Data source returns empty quote list
-- **WHEN** the system refreshes quotes for one or more symbols and the quote provider returns an empty list
-- **THEN** the refresh outcome is marked as failed and a user-visible message is available
+#### Scenario: 数据源返回空行情列表
+- **WHEN** 系统为一个或多个标的刷新行情，而行情提供方返回空列表
+- **THEN** 刷新结果被标记为失败，并且提供用户可见的提示信息
 
-### Requirement: Quote refresh SHALL expose a user-friendly error message for empty results
-When quote refresh fails due to empty results, the system SHALL provide a clear, user-friendly message that helps the user understand that no data was retrieved.
+### Requirement: 空结果导致刷新失败时应当（SHALL）提供友好错误信息
+当行情刷新因空结果而失败时，系统应当（SHALL）提供清晰、易理解的提示，帮助用户理解“未获取到任何数据”。
 
-#### Scenario: Display empty-result message
-- **WHEN** quote refresh fails due to empty results
-- **THEN** the UI can display a message equivalent to “no quote data retrieved”
+#### Scenario: 展示空结果提示
+- **WHEN** 行情刷新因空结果失败
+- **THEN** UI 可以展示等同于“未获取到行情数据”的提示
