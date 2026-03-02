@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+
+    <!-- Only allow cleartext HTTP for specific quote providers if required. Prefer HTTPS. -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">searchapi.eastmoney.com</domain>
+        <domain includeSubdomains="false">push2.eastmoney.com</domain>
+        <domain includeSubdomains="false">push2his.eastmoney.com</domain>
+    </domain-config>
+
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">qt.gtimg.cn</domain>
+        <domain includeSubdomains="false">smartbox.gtimg.cn</domain>
+    </domain-config>
+</network-security-config>
